@@ -16,12 +16,17 @@ GREEN = (0, 255, 0)
 
 # Setup the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Move the Bar!!")
+pygame.display.set_caption("Move the Bar")
 
 # load game sound
 gameOverSound = pygame.mixer.Sound('./Media/gameOverSound.wav')
 gameOpenSound = pygame.mixer.Sound('./Media/openingSound.wav')
 
+backgroundImage1 = pygame.image.load('./Media/background.png')
+backgroundImage1 = pygame.transform.scale(backgroundImage1, (WIDTH, HEIGHT))
+
+backgroundImage2 = pygame.image.load('./Media/ATSTheSpot.png')
+backgroundImage2 = pygame.transform.scale(backgroundImage2, (WIDTH, HEIGHT))
 # Bar settings
 BAR_WIDTH = 100
 BAR_HEIGHT = 20
@@ -90,7 +95,7 @@ def gameOverScreen():
                 else:
                     name += event.unicode
 
-        screen.fill(WHITE)
+        screen.blit(backgroundImage1, (0, 0)) 
         drawText("Enter your name:", font, BLACK, screen, WIDTH // 2 - 150, HEIGHT // 2 - 50)
         drawText(name, font, BLACK, screen, WIDTH // 2 - 150, HEIGHT // 2)
         pygame.display.update()
@@ -115,6 +120,7 @@ def showHighScores():
 
 def menuScreen():
     screen.fill(WHITE)
+    screen.blit(backgroundImage2, (0, 0))
     drawText("Main Menu", font, BLACK, screen, WIDTH // 2 - 100, HEIGHT // 4)
     drawText("1. Start Game", small_font, BLACK, screen, WIDTH // 2 - 100, HEIGHT // 2)
     drawText("2. Show High Scores", small_font, BLACK, screen, WIDTH // 2 - 100, HEIGHT // 2 + 40)
